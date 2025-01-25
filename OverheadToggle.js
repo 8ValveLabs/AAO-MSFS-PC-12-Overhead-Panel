@@ -6,6 +6,12 @@ class OverheadToggle extends HTMLElement {
         this.state = false;
         this.imgElement = document.createElement("img");
         this.imgElement.style.cursor = "pointer";
+        this.imgElement.style.position = "relative";
+        this.imgElement.style.top = this.getAttribute("top") || 0;
+        this.imgElement.style.left = this.getAttribute("left")  || 0;
+        this.imgElement.style.webkitTapHighlightColor = "transparent"; 
+        this.imgElement.style.touchAction = "manipulation"; 
+
 
         this.imgElement.addEventListener("click", () => this.toggle());
         this.shadowRoot.appendChild(this.imgElement);

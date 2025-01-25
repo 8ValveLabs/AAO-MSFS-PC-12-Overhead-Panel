@@ -1,198 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <script src="AaoWebApi.js"></script>
+    <script src="OverheadToggle.js" defer></script>
     <script>
         // Initialize the AAO Web API
         var webApi = new AaoWebApi();
         webApi.StartAPI(250);
     </script>
-    <title>Button Tabs</title>
-    <style>
-        .tab {
-            display: none;
-        }
-        .tab.active {
-            display: block;
-        }
-        button {
-            width: 80px;
-            height: 80px;
-            margin: 5px;
-            background-color: #000000; /* Sleek black background */
-            color: #FFFFFF; /* White font for high contrast */
-            border: 2px solid transparent; /* Default transparent border */
-            border-radius: 5px; /* Slightly rounded corners */
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease; /* Smooth hover effect */
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(8, auto);
-            gap: 5px;
-            margin-left: 8px;
-        }
-        h2 {
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-left: 24px;
-        }
-        body {
-            background-color: #000000;
-        }
-        .btn-group-1 {
-            border-color: #FF5733; /* Outline for group 1 */
-        }
-
-        .btn-group-2 {
-            border-color: #33FF57; /* Outline for group 2 */
-        }
-
-        .btn-group-3 {
-            border-color: #3357FF; /* Outline for group 3 */
-        }
-
-        .btn-group-4 {
-            border-color: #FFC300; /* Outline for group 4 */
-        }
-
-        .btn-group-5 {
-            border-color: #C70039; /* Outline for group 5 */
-        }
-
-        .btn-group-6 {
-            border-color: #900C3F; /* Outline for group 6 */
-        }
-
-        .btn-group-7 {
-            border-color: #581845; /* Outline for group 7 */
-        }
-
-        .btn-group-8 {
-            border-color: #DAF7A6; /* Outline for group 8 */
-        }
-
-        .btn-group-9 {
-            border-color: #FF33F6; /* Outline for group 9 */
-        }
-
-        .btn-group-10 {
-            border-color: #33FFF3; /* Outline for group 10 */
-        }
-
-        .btn-group-11 {
-            border-color: #FF6F00; /* Outline for group 11 */
-        }
-
-        .btn-group-12 {
-            border-color: #1A5276; /* Outline for group 12 */
-        }
-
-
-    </style>
+    <script src="button_handlers.js" defer></script>
 </head>
-<body >
-    <div>
-        <button onclick="showTab('tab1')" style="height: auto;" >Tab 1</button>
-        <button onclick="showTab('tab2')" style="height: auto;" >Tab 2</button>
-        <button onclick="if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); } else if (document.documentElement.mozRequestFullScreen) { document.documentElement.mozRequestFullScreen(); } else if (document.documentElement.webkitRequestFullscreen) { document.documentElement.webkitRequestFullscreen(); } else if (document.documentElement.msRequestFullscreen) { document.documentElement.msRequestFullscreen(); }">Fullscreen</button>
-    </div>
+<body>
+    <overhead-toggle img-on="./buttons/wing_lights_on.png" img-off="./buttons/wing_lights_off.png"
+                data-action-on="button1On" data-action-off="button1Off" top="186px" left="157px">
+    </overhead-toggle>
 
-    <!-- Tab 1 -->
-    <div id="tab1" class="tab active">
-        <h2 >Tab 1</h2>
-        <div class="grid">
-            <button class="btn-group-1" onclick="webApi.SendScript('1 (>K:SWSPC12-EXT LT Wing TOGGLE)')">WING<br>LIGHT</button>
-            <button class="btn-group-1" onclick="webApi.SendScript('1 (>K:SWSPC12-EXT LT Recognition TOGGLE)')">RECOG<br>LIGHT</button>
-            <button class="btn-group-2" onclick="webApi.SendScript('1 (>K:SWSPC12-ELEC Gen1 TOGGLE)')">GEN 1<br>TOGGLE</button>
-            <button class="btn-group-2" onclick="webApi.SendScript('1 (>K:SWSPC12-ELEC Gen2 TOGGLE)')">GEN 2<br>TOGGLE</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">EXT PWR<br>ON</button>
-            <button class="btn-group-4" onclick="webApi.SendScript('')">EIS<br>STORE</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">ECS<br>MANUAL</button>
-            <button class="btn-group-6" onclick="webApi.SendScript('')">OXYGEN<br>ON</button>
-
-            <button class="btn-group-8" onclick="webApi.SendScript('1 (>K:SWSPC12-EXT LT TestLamp TOGGLE)')">TEST<br>LAMP</button>
-            <button class="btn-group-7" onclick="webApi.SendScript('1 (>K:SWSPC12-ELEC Gen1 RESET)')">GEN<br>RESET</button>
-            <button class="btn-group-2">TEST<br>AP</button>
-            <button class="btn-group-2">YD</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">EXT PWR<br>OFF</button>
-            <button class="btn-group-4" onclick="webApi.SendScript('')">EIS<br>RESET</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">ECS<br>AUTO</button>
-            <button class="btn-group-6" onclick="webApi.SendScript('')">OXYGEN<br>OFF</button>
-
-            <button class="btn-group-8" onclick="webApi.SendScript('1 (>K:SWSPC12-MISC Pusher test CHEAT)')">TEST<br>PUSHER</button>
-            <button class="btn-group-9" onclick="webApi.SendScript('')">GNS530</button>
-            <button class="btn-group-10" onclick="webApi.SendScript('')">NON ESS<br>OVERRIDE</button>
-            <button class="btn-group-11" onclick="webApi.SendScript('')">INV<br>GEN1</button>
-            <button class="btn-group-12" onclick="webApi.SendScript('')">STBY BUS<br>ON</button>
-            <button class="btn-group-4" onclick="webApi.SendScript('')">EIS<br>MENU</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">ECS<br>INCR</button>
-            <button class="btn-group-7" onclick="webApi.SendScript('')"> WARNING<br>RESET</button>
-
-            <button class="btn-group-8" onclick="webApi.SendScript('1 (>K:SWSPC12-EXT LT TestFire TOGGLE)')">TEST<br>FIRE</button>
-            <button class="btn-group-9" onclick="webApi.SendScript('')">GNS430</button>
-            <button class="btn-group-10" onclick="webApi.SendScript('')">NON ESS<br>AUTO</button>
-            <button class="btn-group-11" onclick="webApi.SendScript('')">INV<br>BATT</button>
-            <button class="btn-group-12" onclick="webApi.SendScript('')">STBY BUS<br>OFF</button>
-            <button class="btn-group-4" onclick="webApi.SendScript('')">EIS<br>TEST</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">ECS<br>DECR</button>
-            <button class="btn-group-7" onclick="webApi.SendScript('')">CAUTION<br>RESET</button>
-        </div>
-    </div>
-
-    <!-- Tab 2 -->
-    <div id="tab2" class="tab">
-        <h2 >Tab 2</h2>
-        <div class="grid">
-            <button class="btn-group-1" onclick="webApi.SendScript('')">AP<br>TEST</button>
-            <button class="btn-group-1" onclick="webApi.SendScript('')">YAW<br>DAMPER</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">DOME<br>ON</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">CABIN<br>ON</button>
-            <button class="btn-group-6" onclick="webApi.SendScript('')">RDG LIGHT<br>ON</button>
-            <button class="btn-group-8" onclick="webApi.SendScript('')">BOOTS<br>TOGGLE</button>
-            <button class="btn-group-8" onclick="webApi.SendScript('')">LH WASH<br>TOGGLE</button>
-            <button class="btn-group-8" onclick="webApi.SendScript('')">RH WASH<br>TOGGLE</button>
-
-            <button class="btn-group-2" onclick="webApi.SendScript('')">EADI<br>INCR</button>
-            <button class="btn-group-2" onclick="webApi.SendScript('')">EHSI<br>INCR</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">DOME<br>DIM</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">CABIN<br>DIM</button>
-            <button class="btn-group-6" onclick="webApi.SendScript('')">RDG LIGHT<br>OFF</button>
-            <button class="btn-group-9" onclick="webApi.SendScript('')">BOOTS<br>INT<br>TOGGLE</button>
-            <button class="btn-group-9" onclick="webApi.SendScript('')">LH INT<br>TOGGLE</button>
-            <button class="btn-group-9" onclick="webApi.SendScript('')">RH INT<br>TOGGLE</button>
-
-            <button class="btn-group-2" onclick="webApi.SendScript('')">EADI<br>DECR</button>
-            <button class="btn-group-2" onclick="webApi.SendScript('')">EHSI<br>DECR</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">DOME<br>OFF</button>
-            <button class="btn-group-3" onclick="webApi.SendScript('')">CABIN<br>OFF</button>
-            <button class="btn-group-7" onclick="webApi.SendScript('')">ANUN<br>NORMAL</button>
-            <button class="btn-group-10" onclick="webApi.SendScript('')">CTRL LCK<br>TOGGLE</button>
-            <button>23</button>
-            <button class="btn-group-12" onclick="webApi.SendScript('')">PRK BRK<br>ON</button>
-
-            <button class="btn-group-4" onclick="webApi.SendScript('')">BARO<br>SYNC</button>
-            <button class="btn-group-4" onclick="webApi.SendScript('')">BARO<br>STD</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">FLOOD<br>OFF</button>
-            <button class="btn-group-5" onclick="webApi.SendScript('')">FLOOD<br>ON</button>
-            <button class="btn-group-7" onclick="webApi.SendScript('')">ANUN<br>DIM</button>
-            <button>30</button>
-            <button>31</button>
-            <button class="btn-group-12" onclick="webApi.SendScript('')">PRK BRK<br>OFF</button>
-        </div>
-    </div>
-
-    <script>
-        function showTab(tabId) {
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
-        }
-    </script>
+    <overhead-toggle img-on="button2-on.png" img-off="button2-off.png"
+                data-action-on="button2On" data-action-off="button2Off">
+    </overhead-toggle>
 </body>
 </html>
